@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RockPaperScissorsFGC<title>
-    <link rel="stylesheet" href=".styles.css">
+    <title>RockPaperScissorsFGC</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <header>
+      <img class="health-bar-player-1 health-bar" src="./assets/health_bar_full.png">
+      <h1>VS</h1>
+      <img class="health-bar-player-2 health-bar" src="./assets/health_bar_full.png">
+    </header>
+    <main>
+      <div class="wrapper">
+      <div class="select select-weapon">
+        <div class="weapon-box">
+          <p>Dragon Punch</p>
+          <img class="weapon" src="./assets/shoryuken_icon.png">
+        </div>
+        <div class="weapon-box">
+          <p>Heavy Punch</p>
+          <img class="weapon" src="./assets/punch_icon.png">
+        </div>
+        <div class="weapon-box">
+          <p>Tornado Kick</p>
+          <img class="weapon" src="./assets/tatsu_icon.png">
+        </div>
+        <div class="weapon-box">
+          <p>Fire Ball</p>
+          <img class="weapon" src="./assets/hadouken_icon.png">
+        </div>
+        <div class="weapon-box">
+          <p>Heavy Kick</p>
+          <img class="weapon" src="./assets/kick_icon.png">
+        </div>
+      </div>
+      <div class="select computer-select">
+      </div>
+    </div>
+    <div class="button-section">
+      <button id="superButton">Super</button>
+      <button id="attackButton">Attack!</button>
+    <div>
+    </main>
   </body>
   <script type="text/javascript" src="scripts.js"></script>
   <script type="text/javascript" src="Player.js"></script>
