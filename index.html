@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>RockPaperScissorsFGC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -12,35 +15,43 @@
     </header>
     <main>
       <div class="wrapper">
-      <div class="select select-weapon">
-        <div class="weapon-box">
-          <p>Dragon Punch</p>
-          <img class="weapon" src="./assets/shoryuken_icon.png">
-        </div>
-        <div class="weapon-box">
-          <p>Heavy Punch</p>
-          <img class="weapon" src="./assets/punch_icon.png">
-        </div>
-        <div class="weapon-box">
-          <p>Tornado Kick</p>
-          <img class="weapon" src="./assets/tatsu_icon.png">
-        </div>
-        <div class="weapon-box">
-          <p>Fire Ball</p>
-          <img class="weapon" src="./assets/hadouken_icon.png">
-        </div>
-        <div class="weapon-box">
-          <p>Heavy Kick</p>
-          <img class="weapon" src="./assets/kick_icon.png">
-        </div>
+        <section class="select select-weapon">
+          <div class="weapon-box">
+            <p>Dragon Punch</p>
+            <img class="weapon" src="./assets/shoryuken_icon.png">
+          </div>
+          <div class="weapon-box">
+            <p>Heavy Punch</p>
+            <img class="weapon" src="./assets/punch_icon.png">
+          </div>
+          <div class="weapon-box">
+            <p>Tornado Kick</p>
+            <img class="weapon" src="./assets/tatsu_icon.png">
+          </div>
+          <div class="weapon-box">
+            <p>Fire Ball</p>
+            <img class="weapon" src="./assets/hadouken_icon.png">
+          </div>
+          <div class="weapon-box">
+            <p>Heavy Kick</p>
+            <img class="weapon" src="./assets/kick_icon.png">
+          </div>
+        </section>
+        <section class="select computer-select">
+          <section class="results-section">
+            <div class="player-select player1-select">
+            </div>
+            <div class="cross-icon"></div>
+            <div class="player-select player2-select">
+            </div>
+          </section>
+          <img class="rps-diagram" src="./assets/rock_paper_scissors_complex_diagram.png">
+        </section>
       </div>
-      <div class="select computer-select">
+      <div class="button-section">
+        <button class="game-buttons" id="superButton">Super</button>
+        <button class="game-buttons" id="attackButton">Attack!</button>
       </div>
-    </div>
-    <div class="button-section">
-      <button id="superButton">Super</button>
-      <button id="attackButton">Attack!</button>
-    <div>
     </main>
   </body>
   <script type="text/javascript" src="scripts.js"></script>
