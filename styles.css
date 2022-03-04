@@ -7,6 +7,10 @@
   -webkit-text-stroke: .75px black;
 }
 
+.hidden {
+ display:none;
+}
+
 html, body {
   height:100%
 }
@@ -135,9 +139,6 @@ p {
 }
 
 /* ---------game select screen -----------*/
- .hidden {
-  display:none;
-}
 
 h2 {
     margin: 0;
