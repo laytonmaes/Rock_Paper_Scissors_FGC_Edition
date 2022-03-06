@@ -18,6 +18,9 @@ var weaponSelectTK = document.querySelector("#tornadoKick")
 var weaponSelectFB = document.querySelector("#fireBall")
 var weaponSelectHK = document.querySelector("#heavyKick")
 
+playerOneSelectionPreview = document.querySelector("#playerOneSelect")
+playerComputerSelectionPreview = document.querySelector("#playerComputerSelect")
+
 optionSelectClassic.addEventListener("click", test)
 optionSelectTurbo.addEventListener( "click", test)
 
@@ -37,6 +40,24 @@ function test(){
 function getPlayerWeapon(){
   playerOne.weapon = this.id
   console.log(playerOne.weapon)
+  replacePreviewImagePlayerOne()
+}
+
+function replacePreviewImagePlayerOne() {
+  playerOneSelectionPreview.innerHTML = `<p>${playerOne.weapon}</p>`
+}
+
+function replacePreviewImagePlayerComputer() {
+  if (playerComputer.weapon === "dragonPunch"){
+  } else if (playerComputer.weapon === "heavyPunch"){
+
+  } else if (playerComputer.weapon === "tornadoKick"){
+
+  } else if (playerComputer.weapon === "fireBall"){
+
+  } else if (playerComputer.weapon === "heavyKick"){
+
+  }
 }
 //-----------------------game execution ----------------------------//
 function getRandomIndex(array) {
