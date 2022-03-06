@@ -95,12 +95,22 @@ p {
   width: 40%;
   height: 0;
   padding-bottom:40%;
+  display: flex;
+  justify-content: center;
+}
+
+.player-select-icon {
+  height: 115px;
+  width: 115px;
 }
 
 .cross-icon {
   height: 30px;
   width: 30px;
   margin: 0 -15px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 .rps-diagram {
   height: 45%;
