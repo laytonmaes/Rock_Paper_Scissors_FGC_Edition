@@ -6,6 +6,9 @@ var game = new Game();
 var weaponOptionsComplex = ["dragon punch", "heavy punch", "tornado kick", "fire ball", "heavy kick"]
 var weaponOptionsSimple = ["dragon punch", "tornado kick", "fire ball"]
 
+
+
+//-----------------------game execution ----------------------------//
 function getRandomIndex(array) {
   return Math.floor (Math.random() * array.length)
 }
@@ -35,6 +38,7 @@ function evalGame() {
   dealDamage()
   spendSuper()
   evalHasSuper()
+  evalGameEnd()
 }
 
 function evalGameWinner() {
@@ -114,6 +118,13 @@ function dealDamage() {
     game.loser.healthBar -= damage;
   } else {
     evalTradeDamage()
+  }
+}
+
+function evalGameEnd() {
+  if (playerOne.healthBar <= 0 || playerComputer.healthBar <= 0) {
+    console.log ("KO")
+    resetRound()
   }
 }
 
