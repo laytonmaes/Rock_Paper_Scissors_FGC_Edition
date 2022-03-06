@@ -22,20 +22,22 @@ function playSimpleGame() {
   game.selectGameType("simple")
   playerOne.weapon = getRandomWeapon();
   playerComputer.weapon = getRandomWeapon();
-  evaluateGame()
+  evalGame();
   console.log(playerOne)
   console.log(playerComputer)
   console.log(game.winner)
   console.log(game.loser)
 }
 
-function evaluateGame() {
-  evaluateGameWinner()
-  evaluateGameLoser()
+function evalGame() {
+  evalGameWinner()
+  evalGameLoser()
   dealDamage()
+  spendSuper()
+  evalHasSuper()
 }
 
-function evaluateGameWinner() {
+function evalGameWinner() {
   if (playerOne.weapon === playerComputer.weapon) {
     game.winner = game.loser = 0
   } else if (playerOne.weapon === "dragon punch" && (playerComputer.weapon === "heavy punch" || playerComputer.weapon === "tornado kick")) {
@@ -49,11 +51,11 @@ function evaluateGameWinner() {
   } else if(playerOne.weapon === "heavy kick" && (playerComputer.weapon === "dragon punch" || playerComputer.weapon ==="heavy punch")){
     game.winner = playerOne;
   } else {
-    game.winner = playerComputer
+    game.winner = playerComputer;
   }
 }
 
-function evaluateGameLoser() {
+function evalGameLoser() {
   if (game.winner === playerOne) {
     game.loser =playerComputer;
   } else if (game.winner === playerComputer) {
@@ -61,18 +63,61 @@ function evaluateGameLoser() {
   }
 }
 
-// function winnerUseSuper() {
-//   if () {
-//
-//   }
-// }
+function activatePlayerSuper(player) {
+  if (player.hasSuper === true){
+    player.useSuper = true;
+  }
+ }
+
+function evalHasSuper(){
+  if (playerOne.healthBar < 3 && playerOne.useSuper !== "spent") {
+    playerOne.hasSuper = true;
+  };
+  if (playerComputer.healthBar < 3 && playerComputer.useSuper !== "spent") {
+    playerComputer.hasSuper = true
+  }
+}
+
+function spendSuper() {
+  if (playerOne.useSuper === true) {
+      playerOne.useSuper = "spent";
+      playerOne.hasSuper = "spent";
+  }
+  if (playerComputer.useSuper === true) {
+    playerComputer.useSuper = "spent";
+    playerComputer.hasSuper = "spent";
+  }
+}
+
+function evalTradeDamage() {
+  damage = 2;
+  if (playerOne.useSuper === true && playerComputer.useSuper === true) {
+    playerOne.healthBar -= damage;
+    playerComputer.healthBar -= damage;
+  } else if (playerOne.useSuper === true) {
+    playerComputer.healthBar -= damage;
+  } else if (playerComputer.useSuper === true) {
+    playerOne.healthBar-= damage;
+  } else {
+    damage = 1
+    playerOne.healthBar -= damage;
+    playerComputer.healthBar -= damage;
+  }
+}
 
 function dealDamage() {
-  damage = 1
+  damage = 1;
+  if (game.winner.useSuper === true) {
+    damage = 2;
+  }
   if (game.winner) {
     game.loser.healthBar -= damage;
   } else {
-    playerOne.healthBar -= damage
-    playerComputer.healthBar -= damage;
+    evalTradeDamage()
   }
+}
+
+function resetRound() {
+  playerOne = new Player("Player One");
+  playerComputer = new Player("CPU");
 }

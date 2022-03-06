@@ -6,6 +6,7 @@ class Player {
     this.hasSuper = false;
     this.useSuper = false;
     this.roundsWon = 0;
+    this.roundsLost = 0
     this.computerSuper = 0;
   }
   randomizeCpuSuper(){
