@@ -3,11 +3,41 @@ var playerComputer = new Player("CPU");
 
 var game = new Game();
 
-var weaponOptionsComplex = ["dragon punch", "heavy punch", "tornado kick", "fire ball", "heavy kick"]
-var weaponOptionsSimple = ["dragon punch", "tornado kick", "fire ball"]
+var weaponOptionsComplex = ["dragonPunch", "heavyPunch", "tornadoKick", "fireBall", "heavyKick"]
+var weaponOptionsSimple = ["dragonPunch", "tornadoKick", "fireBall"]
 
+var optionSelectClassic = document.querySelector("#classic")
+var optionSelectTurbo = document.querySelector("#turbo")
 
+var buttonAttack = document.querySelector("#attackButton")
+var buttonSuper = document.querySelector("#superButton")
 
+var weaponSelectDP = document.querySelector("#dragonPunch")
+var weaponSelectHP = document.querySelector("#heavyPunch")
+var weaponSelectTK = document.querySelector("#tornadoKick")
+var weaponSelectFB = document.querySelector("#fireBall")
+var weaponSelectHK = document.querySelector("#heavyKick")
+
+optionSelectClassic.addEventListener("click", test)
+optionSelectTurbo.addEventListener( "click", test)
+
+buttonSuper.addEventListener("click", test)
+buttonAttack.addEventListener("click", playSimpleGame)
+
+weaponSelectDP.addEventListener("click", getPlayerWeapon)
+weaponSelectHP.addEventListener("click", getPlayerWeapon)
+weaponSelectTK.addEventListener("click", getPlayerWeapon)
+weaponSelectFB.addEventListener("click", getPlayerWeapon)
+weaponSelectHK.addEventListener("click", getPlayerWeapon)
+
+function test(){
+  console.log(this)
+}
+
+function getPlayerWeapon(){
+  playerOne.weapon = this.id
+  console.log(playerOne.weapon)
+}
 //-----------------------game execution ----------------------------//
 function getRandomIndex(array) {
   return Math.floor (Math.random() * array.length)
@@ -23,13 +53,16 @@ function getRandomWeapon() {
 
 function playSimpleGame() {
   game.selectGameType("simple")
-  playerOne.weapon = getRandomWeapon();
-  playerComputer.weapon = getRandomWeapon();
-  evalGame();
-  console.log(playerOne)
-  console.log(playerComputer)
-  console.log(game.winner)
-  console.log(game.loser)
+  if (!playerOne.weapon) {
+    console.log ("error");
+  } else{
+    playerComputer.weapon = getRandomWeapon();
+    evalGame();
+    console.log(playerOne)
+    console.log(playerComputer)
+    console.log(game.winner)
+    console.log(game.loser)
+  }
 }
 
 function evalGame() {
@@ -44,15 +77,15 @@ function evalGame() {
 function evalGameWinner() {
   if (playerOne.weapon === playerComputer.weapon) {
     game.winner = game.loser = 0
-  } else if (playerOne.weapon === "dragon punch" && (playerComputer.weapon === "heavy punch" || playerComputer.weapon === "tornado kick")) {
+  } else if (playerOne.weapon === "dragonPunch" && (playerComputer.weapon === "heavyPunch" || playerComputer.weapon === "tornadoKick")) {
     game.winner = playerOne;
-  } else if(playerOne.weapon === "heavy punch" && (playerComputer.weapon === "tornado kick" || playerComputer.weapon === "fire ball")){
+  } else if(playerOne.weapon === "heavyPunch" && (playerComputer.weapon === "tornadoKick" || playerComputer.weapon === "fireBall")){
     game.winner = playerOne;
-  } else if (playerOne.weapon === "tornado kick" && (playerComputer.weapon === "fire ball" || playerComputer.weapon === "heavy kick")) {
+  } else if (playerOne.weapon === "tornadoKick" && (playerComputer.weapon === "fireBall" || playerComputer.weapon === "heavyKick")) {
     game.winner = playerOne;
-  } else if (playerOne.weapon === "fire ball" && (playerComputer.weapon === "heavy kick" || playerComputer.weapon === "dragon punch")) {
+  } else if (playerOne.weapon === "fireBall" && (playerComputer.weapon === "heavyKick" || playerComputer.weapon === "dragonPunch")) {
     game.winner = playerOne;
-  } else if(playerOne.weapon === "heavy kick" && (playerComputer.weapon === "dragon punch" || playerComputer.weapon ==="heavy punch")){
+  } else if(playerOne.weapon === "heavyKick" && (playerComputer.weapon === "dragonPunch" || playerComputer.weapon ==="heavyPunch")){
     game.winner = playerOne;
   } else {
     game.winner = playerComputer;

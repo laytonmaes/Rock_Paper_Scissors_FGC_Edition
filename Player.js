@@ -1,7 +1,7 @@
 class Player {
   constructor(playerName){
     this.playerName = playerName;
-    this.weapon = "";
+    this.weapon = 0;
     this.healthBar =  5;
     this.hasSuper = false;
     this.useSuper = false;
