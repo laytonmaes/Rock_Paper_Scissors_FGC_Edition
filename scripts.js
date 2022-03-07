@@ -18,13 +18,17 @@ var weaponSelectTK = document.querySelector("#tornadoKick")
 var weaponSelectFB = document.querySelector("#fireBall")
 var weaponSelectHK = document.querySelector("#heavyKick")
 
-playerOneSelectionPreview = document.querySelector("#playerOneSelect")
-playerComputerSelectionPreview = document.querySelector("#playerComputerSelect")
+var playerOneSelectionPreview = document.querySelector("#playerOneIcon")
+var playerComputerSelectionPreview = document.querySelector("#playerComputerIcon")
+var playerWinnerComparitor = document.querySelector(".cross")
+
+var healthBarPlayerOne = document.querySelector(".health-bar-player-one")
+var healthBarPlayerComputer = document.querySelector(".health-bar-player-computer")
 
 optionSelectClassic.addEventListener("click", test)
 optionSelectTurbo.addEventListener( "click", test)
 
-buttonSuper.addEventListener("click", test)
+buttonSuper.addEventListener("click", playerUseSuper)
 buttonAttack.addEventListener("click", playSimpleGame)
 
 weaponSelectDP.addEventListener("click", getPlayerWeapon)
@@ -44,21 +48,51 @@ function getPlayerWeapon(){
 }
 
 function replacePreviewImagePlayerOne() {
-  playerOneSelectionPreview.innerHTML = `<p>${playerOne.weapon}</p>`
+  playerOneSelectionPreview.src = `./assets/weapon_${playerOne.weapon}_icon.png`
 }
 
 function replacePreviewImagePlayerComputer() {
-  if (playerComputer.weapon === "dragonPunch"){
-  } else if (playerComputer.weapon === "heavyPunch"){
+playerComputerSelectionPreview.src = `./assets/weapon_${playerComputer.weapon}_icon.png`
+}
 
-  } else if (playerComputer.weapon === "tornadoKick"){
-
-  } else if (playerComputer.weapon === "fireBall"){
-
-  } else if (playerComputer.weapon === "heavyKick"){
-
+function displayGameResults() {
+  if (game.winner === playerOne){
+    playerOneSelectionPreview.classList.add("winner-border")
+    playerOneSelectionPreview.classList.remove("trade-border")
+    playerComputerSelectionPreview.classList.remove("winner-border")
+    playerComputerSelectionPreview.classList.remove("trade-border")
+    playerWinnerComparitor.innerText = ">"
+  } else if(game.winner === playerComputer) {
+    playerComputerSelectionPreview.classList.add("winner-border")
+    playerComputerSelectionPreview.classList.remove("trade-border")
+    playerOneSelectionPreview.classList.remove("trade-border")
+    playerOneSelectionPreview.classList.remove("winner-border")
+    playerWinnerComparitor.innerText = "<"
+  } else {
+    playerComputerSelectionPreview.classList.add("trade-border")
+    playerOneSelectionPreview.classList.add("trade-border")
+    playerOneSelectionPreview.classList.remove("winner-border")
+    playerComputerSelectionPreview.classList.remove("winner-border")
+    playerWinnerComparitor.innerText = "="
   }
 }
+
+function displayHealth(){
+  var healthBarSrc = ["health_bar_0", "health_bar_20", "health_bar_40", "health_bar_60", "health_bar_80", "health_bar_full"]
+  for (var i = 0; i < 6; i++) {
+    if (i === playerOne.healthBar) {
+      healthBarPlayerOne.src = `./assets/${healthBarSrc[i]}.png`
+    }
+    if (i === playerComputer.healthBar) {
+      healthBarPlayerComputer.src = `./assets/${healthBarSrc[i]}.png`
+    }
+  }
+}
+
+function playerUseSuper(){
+  activatePlayerSuper(playerOne);
+}
+
 //-----------------------game execution ----------------------------//
 function getRandomIndex(array) {
   return Math.floor (Math.random() * array.length)
@@ -78,6 +112,7 @@ function playSimpleGame() {
     console.log ("error");
   } else{
     playerComputer.weapon = getRandomWeapon();
+    replacePreviewImagePlayerComputer();
     evalGame();
     console.log(playerOne)
     console.log(playerComputer)
@@ -87,12 +122,15 @@ function playSimpleGame() {
 }
 
 function evalGame() {
+  timeout= setTimeout(evalGameEnd, 5000)
   evalGameWinner()
   evalGameLoser()
   dealDamage()
+  displayGameResults()
+  displayHealth()
   spendSuper()
   evalHasSuper()
-  evalGameEnd()
+  evalGameEnd();
 }
 
 function evalGameWinner() {
@@ -175,14 +213,21 @@ function dealDamage() {
   }
 }
 
+function alertKO() {
+      alert("KO")
+}
+
 function evalGameEnd() {
   if (playerOne.healthBar <= 0 || playerComputer.healthBar <= 0) {
-    console.log ("KO")
-    resetRound()
+    displayHealth()
+    timeoutKO= setTimeout(alertKO, 1000)
+    timeoutReset= setTimeout(resetRound, 3000)
+
   }
 }
 
 function resetRound() {
   playerOne = new Player("Player One");
   playerComputer = new Player("CPU");
+  displayHealth()
 }

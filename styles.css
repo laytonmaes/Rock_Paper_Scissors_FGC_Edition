@@ -11,6 +11,14 @@
  display:none;
 }
 
+.winner-border {
+  border: 2px solid blue;
+}
+
+.trade-border {
+  border: 2px solid red;
+}
+
 html, body {
   height:100%
 }
@@ -44,12 +52,13 @@ h1 {
 p {
     font-size: 30px;
 }
+
 .health-bar{
   height: 70px;
   width: 40%;
 }
 
-.health-bar-player-2{
+.health-bar-player-computer{
   transform: scaleX(-1);
 }
 
@@ -112,6 +121,11 @@ p {
   justify-content: center;
   align-items: center;
 }
+
+.cross {
+  font-size: 40px;
+}
+
 .rps-diagram {
   height: 45%;
   margin: 2.5%;
