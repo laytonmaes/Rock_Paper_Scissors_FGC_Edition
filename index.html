@@ -10,40 +10,44 @@
   <body>
     <section class="game-display">
       <header>
-        <img class="health-bar-player-1 health-bar" src="./assets/health_bar_full.png">
+        <img class="health-bar-player-one health-bar" src="./assets/health_bar_full.png">
         <h1>VS</h1>
-        <img class="health-bar-player-2 health-bar" src="./assets/health_bar_full.png">
+        <img class="health-bar-player-computer health-bar" src="./assets/health_bar_full.png">
       </header>
       <main>
         <div class="wrapper">
           <section class="select select-weapon">
             <div class="weapon-box" id="dragonPunch">
               <p>Dragon Punch</p>
-              <img class="weapon" src="./assets/shoryuken_icon.png">
+              <img class="weapon" src="./assets/weapon_dragonPunch_icon.png">
             </div>
             <div class="weapon-box" id="heavyPunch">
               <p>Heavy Punch</p>
-              <img class="weapon" src="./assets/punch_icon.png">
+              <img class="weapon" src="./assets/weapon_heavyPunch_icon.png">
             </div>
             <div class="weapon-box" id="tornadoKick">
               <p>Tornado Kick</p>
-              <img class="weapon" src="./assets/tatsu_icon.png">
+              <img class="weapon" src="./assets/weapon_tornadoKick_icon.png">
             </div>
             <div class="weapon-box" id="fireBall">
               <p>Fire Ball</p>
-              <img class="weapon" src="./assets/hadouken_icon.png">
+              <img class="weapon" src="./assets/weapon_fireBall_icon.png">
             </div>
             <div class="weapon-box" id="heavyKick">
               <p>Heavy Kick</p>
-              <img class="weapon" src="./assets/kick_icon.png">
+              <img class="weapon" src="./assets/weapon_heavyKick_icon.png">
             </div>
           </section>
           <section class="select computer-select">
             <section class="results-section">
               <div class="player-select" id="playerOneSelect">
+                <img class="player-select-icon" id="playerOneIcon" src="./assets/weapon_empty_icon.png">
               </div>
-              <div class="cross-icon"></div>
-              <div class="player-select" id="playerComputerSelect">
+              <div class="cross-icon">
+                <p class="cross">x</p>
+              </div>
+              <div class="player-select">
+                <img class="player-select-icon" id="playerComputerIcon" src="./assets/weapon_empty_icon.png">
               </div>
             </section>
             <img class="rps-diagram" src="./assets/rps_complex_diagram.png">
@@ -55,9 +59,9 @@
         </div>
       </main>
     </section>
-    <section class="menue hidden">
+    <section id="gameSelectMenue">
         <div class="shade-layer">
-            </div>
+        </div>
         <section class="game-select-screen">
           <section class="game-select-box">
             <section class="header2">
@@ -74,6 +78,20 @@
             </div>
           </section>
         </section>
+    </section>
+    <section id="koMenue" class="hidden">
+      <div class="shade-layer">
+      </div>
+      <section class="game-ko-screen">
+        <section class="ko-box">
+          <h5 id="winnerAnnouncement">PLAYER ONE WINS!!!</h5>
+          <h6 id="winnerTally">Player One: 0 CPU: 0</h6>
+          <section class="continue-box">
+            <p class="continue">Continue?</p>
+            <button class="ko-buttons" id="continue">Continue?</button>
+            <button class="ko-buttons" id="returnToSelect">Return to game select?</button>
+          <section>
+      </section>
     </section>
   </body>
   <script type="text/javascript" src="Player.js"></script>
