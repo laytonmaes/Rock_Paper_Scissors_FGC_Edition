@@ -23,6 +23,7 @@ var weaponSelectHK = document.querySelector("#heavyKick")
 var playerOneSelectionPreview = document.querySelector("#playerOneIcon")
 var playerComputerSelectionPreview = document.querySelector("#playerComputerIcon")
 var playerWinnerComparitor = document.querySelector(".cross")
+var diagramGameMode = document.querySelector(".rps-diagram")
 
 var healthBarPlayerOne = document.querySelector(".health-bar-player-one")
 var healthBarPlayerComputer = document.querySelector(".health-bar-player-computer")
@@ -112,6 +113,7 @@ function selectGameType() {
      weaponSelectHP.parentNode.removeChild(weaponSelectHP);
      weaponSelectHK.parentNode.removeChild(weaponSelectHK)
      playerComputer.randomizeCpuSuper();
+     diagramGameMode.src = "./assets/rps_simple_diagram.png"
   } else {
     menueGameSelect.classList.add("hidden")
     playerComputer.randomizeCpuSuper();
