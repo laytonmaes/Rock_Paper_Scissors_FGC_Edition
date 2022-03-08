@@ -12,4 +12,9 @@ class Player {
   randomizeCpuSuper(){
     this.computerSuper = Math.floor(Math.random() * 3);
   }
+  evalCpuSuper() {
+    if (this.healthBar === this.computerSuper) {
+      activatePlayerSuper(playerComputer)
+    }
+  }
 }

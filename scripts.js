@@ -111,8 +111,10 @@ function selectGameType() {
     menueGameSelect.classList.add("hidden")
      weaponSelectHP.parentNode.removeChild(weaponSelectHP);
      weaponSelectHK.parentNode.removeChild(weaponSelectHK)
+     playerComputer.randomizeCpuSuper();
   } else {
     menueGameSelect.classList.add("hidden")
+    playerComputer.randomizeCpuSuper();
   }
 }
 
@@ -150,6 +152,7 @@ function playSimpleGame() {
 }
 
 function evalGame() {
+  playerComputer.evalCpuSuper()
   evalGameWinner()
   evalGameLoser()
   dealDamage()
@@ -274,5 +277,6 @@ function resetRound() {
   playerComputerSelectionPreview.classList.remove("trade-border")
   playerOneSelectionPreview.src = `./assets/weapon_empty_icon.png`
   playerComputerSelectionPreview.src = `./assets/weapon_empty_icon.png`
+  playerComputer.randomizeCpuSuper();
   displayHealth()
 }
