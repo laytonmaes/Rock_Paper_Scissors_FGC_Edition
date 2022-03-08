@@ -61,13 +61,13 @@ class Game {
       game.loser.healthBar -= damage;
     }
   }
-  evalSpentSupers() {
-    playerOne.spendSuper();
-    playerComputer.spendSuper();
-  }
   resetWinner() {
     this.winner = 0;
     this.loser = 0;
+  }
+  evalSpentSupers() {
+    playerOne.spendSuper();
+    playerComputer.spendSuper();
   }
   evalGame() {
     playerComputer.evalCpuSuper();

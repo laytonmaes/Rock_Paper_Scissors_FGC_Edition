@@ -7,8 +7,14 @@ var weaponOptionsComplex = ["dragonPunch", "heavyPunch", "tornadoKick", "fireBal
 var weaponOptionsSimple = ["dragonPunch", "tornadoKick", "fireBall"];
 
 // -------------------- Query Selector -------------------- //
+var menueGameSelect = document.querySelector("#gameSelectMenue");
+var menueKo = document.querySelector("#koMenue");
+
 var optionSelectClassic = document.querySelector("#classic");
 var optionSelectTurbo = document.querySelector("#turbo");
+
+var healthBarPlayerOne = document.querySelector(".health-bar-player-one");
+var healthBarPlayerComputer = document.querySelector(".health-bar-player-computer");
 
 var buttonAttack = document.querySelector("#attackButton");
 var buttonSuper = document.querySelector("#superButton");
@@ -26,12 +32,6 @@ var playerComputerSelectionPreview = document.querySelector("#playerComputerIcon
 var playerWinnerComparitor = document.querySelector(".cross");
 var diagramGameMode = document.querySelector(".rps-diagram");
 
-var healthBarPlayerOne = document.querySelector(".health-bar-player-one");
-var healthBarPlayerComputer = document.querySelector(".health-bar-player-computer");
-
-var menueGameSelect = document.querySelector("#gameSelectMenue");
-var menueKo = document.querySelector("#koMenue");
-
 var winnerAnnouncement = document.querySelector("#winnerAnnouncement");
 var winnerTally = document.querySelector("#winnerTally");
 
@@ -40,12 +40,12 @@ optionSelectClassic.addEventListener("click", selectGameType);
 
 optionSelectTurbo.addEventListener( "click", selectGameType);
 
-buttonSuper.addEventListener("click", function () {
-  playerOne.activatePlayerSuper();
-});
-
 buttonAttack.addEventListener("click", function () {
   game.playSimpleGame();
+});
+
+buttonSuper.addEventListener("click", function () {
+  playerOne.activatePlayerSuper();
 });
 
 buttonContinue.addEventListener("click", resetRound);
@@ -65,6 +65,32 @@ weaponSelectFB.addEventListener("click", getPlayerWeapon);
 weaponSelectHK.addEventListener("click", getPlayerWeapon);
 
 // -------------------- functions -------------------- //
+function selectGameType() {
+  game.gameType = this.id;
+  if (game.gameType === "classic") {
+    menueGameSelect.classList.add("hidden");
+    weaponSelectHP.parentNode.removeChild(weaponSelectHP);
+    weaponSelectHK.parentNode.removeChild(weaponSelectHK);
+    playerComputer.randomizeCpuSuper();
+    diagramGameMode.src = "./assets/rps_simple_diagram.png";
+  } else {
+    menueGameSelect.classList.add("hidden");
+    playerComputer.randomizeCpuSuper();
+  }
+}
+
+function getRandomIndex(array) {
+  return Math.floor (Math.random() * array.length);
+}
+
+function getRandomWeapon() {
+  if (game.gameType === "classic") {
+    return weaponOptionsSimple[getRandomIndex(weaponOptionsSimple)];
+  } else {
+    return weaponOptionsComplex[getRandomIndex(weaponOptionsComplex)];
+  }
+}
+
 function getPlayerWeapon(){
   playerOne.weapon = this.id;
   replacePreviewImagePlayerOne();
@@ -112,36 +138,6 @@ function displayHealth(){
   }
 }
 
-function selectGameType() {
-  game.gameType = this.id;
-  if (game.gameType === "classic") {
-    menueGameSelect.classList.add("hidden");
-     weaponSelectHP.parentNode.removeChild(weaponSelectHP);
-     weaponSelectHK.parentNode.removeChild(weaponSelectHK);
-     playerComputer.randomizeCpuSuper();
-     diagramGameMode.src = "./assets/rps_simple_diagram.png";
-  } else {
-    menueGameSelect.classList.add("hidden");
-    playerComputer.randomizeCpuSuper();
-  }
-}
-
-function getRandomIndex(array) {
-  return Math.floor (Math.random() * array.length);
-}
-
-function getRandomWeapon() {
-  if (game.gameType === "classic") {
-    return weaponOptionsSimple[getRandomIndex(weaponOptionsSimple)];
-  } else {
-    return weaponOptionsComplex[getRandomIndex(weaponOptionsComplex)];
-  }
-}
-
-function openMenueKO() {
-  menueKo.classList.remove("hidden");
-}
-
 function evalGameEnd() {
   if (playerOne.healthBar <= 0 || playerComputer.healthBar <= 0) {
     displayHealth();
@@ -160,6 +156,10 @@ function evalGameEnd() {
     winnerTally.innerText = `Player One: ${game.roundsWon} CPU: ${game.roundsLost}`;
     openMenueKO();
   }
+}
+
+function openMenueKO() {
+  menueKo.classList.remove("hidden");
 }
 
 function resetRound() {
