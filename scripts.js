@@ -11,6 +11,8 @@ var optionSelectTurbo = document.querySelector("#turbo")
 
 var buttonAttack = document.querySelector("#attackButton")
 var buttonSuper = document.querySelector("#superButton")
+var buttonContinue = document.querySelector("#continue")
+var buttonReturn = document.querySelector("#returnToSelect")
 
 var weaponSelectDP = document.querySelector("#dragonPunch")
 var weaponSelectHP = document.querySelector("#heavyPunch")
@@ -25,11 +27,21 @@ var playerWinnerComparitor = document.querySelector(".cross")
 var healthBarPlayerOne = document.querySelector(".health-bar-player-one")
 var healthBarPlayerComputer = document.querySelector(".health-bar-player-computer")
 
-optionSelectClassic.addEventListener("click", test)
-optionSelectTurbo.addEventListener( "click", test)
+var menueGameSelect = document.querySelector("#gameSelectMenue")
+var menueKo = document.querySelector("#koMenue")
+
+var winnerAnnouncement = document.querySelector("#winnerAnnouncement")
+var winnerTally = document.querySelector("#winnerTally")
+
+optionSelectClassic.addEventListener("click", selectGameType)
+optionSelectTurbo.addEventListener( "click", selectGameType)
 
 buttonSuper.addEventListener("click", playerUseSuper)
 buttonAttack.addEventListener("click", playSimpleGame)
+buttonContinue.addEventListener("click", resetRound)
+buttonReturn.addEventListener("click", function (){
+  window.location.reload()
+})
 
 weaponSelectDP.addEventListener("click", getPlayerWeapon)
 weaponSelectHP.addEventListener("click", getPlayerWeapon)
@@ -93,13 +105,29 @@ function playerUseSuper(){
   activatePlayerSuper(playerOne);
 }
 
+function selectGameType() {
+  game.gameType = this.id
+  if (game.gameType === "classic") {
+    menueGameSelect.classList.add("hidden")
+     weaponSelectHP.parentNode.removeChild(weaponSelectHP);
+     weaponSelectHK.parentNode.removeChild(weaponSelectHK)
+  } else {
+    menueGameSelect.classList.add("hidden")
+  }
+}
+
+function resetRound() {
+  menueKo.classList.add("hidden");
+  resetRound()
+}
+
 //-----------------------game execution ----------------------------//
 function getRandomIndex(array) {
   return Math.floor (Math.random() * array.length)
 }
 
 function getRandomWeapon() {
-  if (game.gameType === "simple") {
+  if (game.gameType === "classic") {
     return weaponOptionsSimple[getRandomIndex(weaponOptionsSimple)]
   } else {
     return weaponOptionsComplex[getRandomIndex(weaponOptionsComplex)]
@@ -107,7 +135,7 @@ function getRandomWeapon() {
 }
 
 function playSimpleGame() {
-  game.selectGameType("simple")
+  game.selectGameType("classic")
   if (!playerOne.weapon) {
     console.log ("error");
   } else{
@@ -122,7 +150,6 @@ function playSimpleGame() {
 }
 
 function evalGame() {
-  timeout= setTimeout(evalGameEnd, 5000)
   evalGameWinner()
   evalGameLoser()
   dealDamage()
@@ -213,21 +240,39 @@ function dealDamage() {
   }
 }
 
-function alertKO() {
-      alert("KO")
+function openMenueKO() {
+  menueKo.classList.remove("hidden")
 }
 
 function evalGameEnd() {
   if (playerOne.healthBar <= 0 || playerComputer.healthBar <= 0) {
     displayHealth()
-    timeoutKO= setTimeout(alertKO, 1000)
-    timeoutReset= setTimeout(resetRound, 3000)
-
+    if (playerOne.healthBar <= 0 && playerComputer.healthBar <= 0){
+      game.Winner = "Draw"
+      winnerAnnouncement.innerText = "KO DRAW! No Winner!"
+    } else if (playerOne.healthBar <=0) {
+      game.gameWinner ="CPU"
+      game.roundsLost = game.roundsLost + 1
+      winnerAnnouncement.innerText = " KO! CPU wins!"
+    } else {
+      game.gameWinner = "Player One"
+      game.roundsWon = game.roundsWon +1
+      winnerAnnouncement.innerText = "KO! Player One wins!"
+    }
+    winnerTally.innerText = `Player One: ${game.roundsWon} CPU: ${game.roundsLost}`
+    openMenueKO()
   }
 }
 
 function resetRound() {
+  menueKo.classList.add("hidden")
   playerOne = new Player("Player One");
   playerComputer = new Player("CPU");
+  playerOneSelectionPreview.classList.remove("winner-border")
+  playerComputerSelectionPreview.classList.remove("winner-border")
+  playerOneSelectionPreview.classList.remove("trade-border")
+  playerComputerSelectionPreview.classList.remove("trade-border")
+  playerOneSelectionPreview.src = `./assets/weapon_empty_icon.png`
+  playerComputerSelectionPreview.src = `./assets/weapon_empty_icon.png`
   displayHealth()
 }
