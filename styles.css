@@ -105,9 +105,9 @@ p {
 .player-select {
   width: 40%;
   height: 0;
-  padding-bottom:40%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .player-select-icon {
@@ -125,7 +125,7 @@ p {
 }
 
 .cross {
-  font-size: 40px;
+  font-size: 50px;
 }
 
 .rps-diagram {

@@ -10,11 +10,26 @@ class Player {
     this.computerSuper = 0;
   }
   randomizeCpuSuper(){
-    this.computerSuper = Math.floor(Math.random() * 3);
+    this.computerSuper = Math.floor(Math.random() * 2) + 1;
+  }
+  evalHasSuper(){
+    if (this.healthBar < 3 && !this.spentSuper) {
+      this.hasSuper = true;
+    }
   }
   evalCpuSuper() {
     if (this.healthBar === this.computerSuper) {
-      activatePlayerSuper(playerComputer)
+      this.activatePlayerSuper();
+    }
+  }
+  activatePlayerSuper() {
+    if (this.hasSuper === true){
+      this.useSuper = true;
+    }
+   }
+  spendSuper() {
+    if (this.useSuper === true) {
+      this.spentSuper = true;
     }
   }
 }
