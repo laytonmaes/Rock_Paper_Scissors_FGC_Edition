@@ -71,6 +71,7 @@ p {
 }
 
 .weapon-box {
+  cursor: pointer;
   display:flex;
   justify-content:space-around;
   align-items: center;
@@ -145,6 +146,7 @@ p {
 }
 
 .game-buttons {
+  cursor: pointer;
   border: 3px solid black;
   font-size: 25px;
   height:50px;
@@ -218,6 +220,7 @@ h4 {
 }
 
 .rules-select {
+  cursor: pointer;
   height: 36%;
   width: 60%;
   display: flex;
@@ -268,6 +271,7 @@ h6 {
 }
 
 .ko-buttons {
+  cursor: pointer;
   border: 3px solid black;
   margin: 5px 0px;
   font-size: 25px;
