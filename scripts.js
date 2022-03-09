@@ -73,9 +73,11 @@ function selectGameType() {
     weaponSelectHK.parentNode.removeChild(weaponSelectHK);
     playerComputer.randomizeCpuSuper();
     diagramGameMode.src = "./assets/rps_simple_diagram.png";
+      buttonSuper.disabled = true;
   } else {
     menueGameSelect.classList.add("hidden");
     playerComputer.randomizeCpuSuper();
+    buttonSuper.disabled = true;
   }
 }
 
@@ -163,6 +165,7 @@ function openMenueKO() {
 }
 
 function resetRound() {
+  buttonSuper.disabled = true;
   menueKo.classList.add("hidden");
   playerOne = new Player("Player One");
   playerComputer = new Player("CPU");

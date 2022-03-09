@@ -56,8 +56,8 @@ p {
 }
 
 .select, .game-select-box, .ko-box{
-  height: 100%;
   width: 40%;
+  height: 100%;
   background-color: #7B7B7B;
   border: 3px solid black;
   border-radius: 25px;
@@ -71,12 +71,12 @@ p {
 }
 
 .weapon-box {
+  height: 15%;
+  width: 70%;
   cursor: pointer;
   display:flex;
   justify-content:space-around;
   align-items: center;
-  width: 70%;
-  height: 15%;
 }
 
 .computer-select {
@@ -95,16 +95,16 @@ p {
 }
 
 .results-section {
-  width: 100%;
   height: 50%;
+  width: 100%;
   display:flex;
   justify-content: space-around;
   align-items: center;
 }
 
 .player-select {
-  width: 40%;
   height: 0;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,13 +146,36 @@ p {
 }
 
 .game-buttons {
-  cursor: pointer;
-  border: 3px solid black;
-  font-size: 25px;
   height:50px;
   width:150px;
+  border: 3px solid black;
+  cursor: pointer;
+  font-size: 25px;
   margin: 0 30px;
+  background: linear-gradient(10deg,#A63B00,#F08200 );
+  color: white;
+  box-shadow: inset  -2px -2px 3px 2px #400A00,
+  inset  2px 2px 3px 2px #ffffff,
+  2px 2px 4px 2px #1d1d1d;
 }
+
+#superButton {
+  background: linear-gradient(-10deg, #256999, #3FDBF5 );
+  color: white;
+  box-shadow: inset  -2px -2px 3px 2px #09314D,
+  inset  2px 2px 3px 2px #ffffff,
+  5px 5px 10px,
+  0px 0px 10px 5px;
+}
+
+#superButton:disabled {
+  cursor:auto;
+  background: #8A8A8A;
+  color: #4E4E4E;
+  box-shadow: inset -2px -2px 3px 2px #3F3F3F,
+  inset  2px 2px 3px 2px #ffffff;
+}
+
 .wrapper {
   height: 75%;
   display: flex;
@@ -168,26 +191,26 @@ p {
 /* ---------game select screen -----------*/
 
 h2 {
-    margin: 0;
   font-size: 57px;
+  margin: 0;
 }
 
 h3 {
-  margin: 0;
   font-size: 47px;
   -webkit-text-stroke: .75px black;
+  margin: 0;
 }
 
 h4 {
-  margin: 0;
   font-size: 30px;
   -webkit-text-stroke: .5px black;
+  margin: 0;
 }
 
 .shade-layer {
-  position: fixed;
   height:100%;
   width:100%;
+  position: fixed;
   background-color: #000000;
   opacity: .6;
 }
@@ -220,16 +243,16 @@ h4 {
 }
 
 .rules-select {
-  cursor: pointer;
   height: 36%;
   width: 60%;
+  cursor: pointer;
+  border: 3px solid black;
+  border-radius: 25px;
+  background-color: #949494;
   display: flex;
   flex-direction:column;
   justify-content:space-around;
   align-items: center;
-  background-color: #949494;
-  border: 3px solid black;
-  border-radius: 25px;
 }
 
 .simple-diagram-menue, .complex-diagram-menue {
@@ -271,12 +294,17 @@ h6 {
 }
 
 .ko-buttons {
+  height:50px;
+  width:300px;
+  font-size: 25px;
   cursor: pointer;
   border: 3px solid black;
   margin: 5px 0px;
-  font-size: 25px;
-  height:50px;
-  width:300px;
+  background: linear-gradient(10deg,#A63B00,#F08200 );
+  color: white;
+  box-shadow: inset  -2px -2px 3px 2px #400A00,
+  inset  2px 2px 3px 2px #ffffff,
+  2px 2px 4px 2px #1d1d1d;
 }
 
 .continue-box {
