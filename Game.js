@@ -68,6 +68,16 @@ class Game {
   evalSpentSupers() {
     playerOne.spendSuper();
     playerComputer.spendSuper();
+    if(playerOne.spentSuper) {
+      buttonSuper.disabled = true;
+    }
+  }
+  evalGameSuper() {
+    playerOne.evalHasSuper();
+    playerComputer.evalHasSuper();
+    if (playerOne.hasSuper === true && !playerOne.spentSuper) {
+      buttonSuper.disabled = false;
+    }
   }
   evalGame() {
     playerComputer.evalCpuSuper();
@@ -78,8 +88,7 @@ class Game {
     this.resetWinner();
     displayHealth();
     this.evalSpentSupers();
-    playerOne.evalHasSuper();
-    playerComputer.evalHasSuper();
+    this.evalGameSuper()
     evalGameEnd();
   }
   playSimpleGame() {
